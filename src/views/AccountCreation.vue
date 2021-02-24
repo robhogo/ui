@@ -1,15 +1,17 @@
 <template>
   <div class="regcontainer">
     <div class="title container">
-      <h1>Login</h1>
+      <h1>Create</h1>
     </div>
     <div class="fields container">
       <input class="inputField" type="text" placeholder="Username" />
+      <input class="inputField" type="text" placeholder="Email" />
       <input class="inputField" type="password" placeholder="Password" />
+      <input class="inputField" type="password" placeholder="Repeat password" />
     </div>
     <div class="close container">
-      <button class="buttonStyle">Login</button>
-      <h3>Create account</h3>
+      <button class="buttonStyle">Create</button>
+      <h3>Already have an account?</h3>
     </div>
   </div>
 </template>
@@ -17,7 +19,7 @@
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
 
-export default class Login extends Vue {}
+export default class Register extends Vue {}
 </script>
 
 <style lang="scss">
@@ -34,10 +36,10 @@ export default class Login extends Vue {}
   flex-direction: column;
 }
 .title {
-  height: 30%;
+  height: 20%;
 }
 .fields {
-  height: 30%;
+  height: 40%;
 }
 .close {
   height: 40%;

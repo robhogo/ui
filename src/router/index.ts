@@ -6,9 +6,18 @@ Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
+    path: '*',
+    redirect: '/'
+  },
+  {
     path: '/',
-    name: 'Home',
+    name: 'Login',
     component: Login
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import('../views/AccountCreation.vue')
   }
 ]
 

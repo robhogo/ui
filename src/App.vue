@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -13,8 +13,7 @@
   color: #2c3e50;
 }
 
-body 
-{
-    margin: 0;
+body {
+  margin: 0;
 }
 </style>
