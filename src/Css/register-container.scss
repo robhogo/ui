@@ -1,0 +1,13 @@
+.regcontainer {
+  width: 30vw;
+  max-width: 800px;
+  min-width: 300px;
+  height: 70vh;
+
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  position: absolute;
+
+  background-color: $clr_darkWhite;
+}
