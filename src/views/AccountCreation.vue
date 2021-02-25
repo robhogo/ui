@@ -4,29 +4,44 @@
       <h1>Create</h1>
     </div>
     <div class="fields container">
-      <input class="inputField" type="text" placeholder="Username" />
-      <input class="inputField" type="text" placeholder="Email" />
-      <input class="inputField" type="password" placeholder="Password" />
-      <input class="inputField" type="password" placeholder="Repeat password" />
+      <BHInput inputType="text" placeholder="Username" />
+      <BHInput inputType="text" placeholder="Email" />
+      <BHInput inputType="password" placeholder="Password" />
+      <BHInput inputType="password" placeholder="Repeat Password" />
     </div>
     <div class="close container">
-      <button class="buttonStyle">Create</button>
-      <h3>Already have an account?</h3>
+      <BHButton text="Create account" @btn-clicked="RegisterEvent()"/>
+      <h3 @click="GoToLogin()">Already have an account?</h3>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
+import BHButton from "@/components/StandardUI/BHButton.vue";
+import BHInput from "@/components/StandardUI/BHInput.vue";
 
-export default class Register extends Vue {}
+  @Component({
+    components: {
+      BHButton,
+      BHInput
+    }
+  })
+
+export default class Register extends Vue {
+  public RegisterEvent() : void{
+    this.$router.push("/register");
+  } 
+  public GoToLogin() : void{
+    this.$router.push("/");
+  } 
+}
 </script>
 
 <style lang="scss">
 @import "../Css/site.scss";
 @import "../Css/register-container.scss";
-@import "../Css/inputfieldstyle.scss";
-@import "../Css/buttonstyle.scss";
+
 
 .container {
   align-items: center;
@@ -39,10 +54,10 @@ export default class Register extends Vue {}
   height: 20%;
 }
 .fields {
-  height: 40%;
+  height: 50%;
 }
 .close {
-  height: 40%;
+  height: 30%;
 }
 
 body {

@@ -4,27 +4,47 @@
       <h1>Login</h1>
     </div>
     <div class="fields container">
-      <input class="inputField" type="text" placeholder="Username" />
-      <input class="inputField" type="password" placeholder="Password" />
+      <BHInput inputType="text" placeholder="Username" :text.sync="username"/>
+      <BHInput inputType="password" placeholder="Password" :text.sync="password" />
     </div>
     <div class="close container">
-      <button class="buttonStyle">Login</button>
-      <h3>Create account</h3>
+      <BHButton text="Login" @btn-clicked="LoginEvent()" />
+      <h3 @click="GoCreateAccount()">Create account</h3>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Vue } from "vue-property-decorator";
 
-export default class Login extends Vue {}
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import BHButton from "@/components/StandardUI/BHButton.vue";
+import BHInput from "@/components/StandardUI/BHInput.vue";
+
+@Component({
+  components: {
+    BHButton,
+    BHInput,
+  },
+})
+
+export default class Login extends Vue {
+  private username: string = "";
+  private password: string = "";
+
+  private LoginEvent(): void {
+    console.log(this.username);
+    console.log(this.password);
+  }
+  private GoCreateAccount(): void {
+    this.$router.push("/register");
+  }
+}
 </script>
+
 
 <style lang="scss">
 @import "../Css/site.scss";
 @import "../Css/register-container.scss";
-@import "../Css/inputfieldstyle.scss";
-@import "../Css/buttonstyle.scss";
 
 .container {
   align-items: center;
@@ -46,5 +66,7 @@ export default class Login extends Vue {}
 body {
   background-image: url("../assets/BitheroLoginBackground.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
 }
 </style>
