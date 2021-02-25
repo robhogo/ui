@@ -3,8 +3,7 @@
     class="inputField"
     v-bind:type="inputType"
     v-bind:placeholder="placeholder"
-    v-model="text"
-    @keyup="$emit('update:text', text);"
+    @keyup="$emit('update:text', $event.target.value);"
   />
 </template>
 
@@ -13,9 +12,9 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class BHInput extends Vue {
-  @Prop() private text!: string;
   @Prop() private inputType!: string;
   @Prop() private placeholder!: string;
+
 }
 </script>
 
