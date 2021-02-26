@@ -5,7 +5,7 @@
     </div>
     <div class="field container">
       <BHInput inputType="text" placeholder="Name" :text.sync="name" />
-      <BHInput inputType="text" placeholder="Select a class" />
+      <BHSelectBox :options="classes" @eventname="updateClass"/>
     </div>
     <div class="close container">
       <BHButton text="Create" @btn-clicked="Create()" />
@@ -20,20 +20,36 @@ import { Component, Vue } from "vue-property-decorator";
 import CharacterBox from "@/components/CharacterComponents/CharacterBox.vue";
 import BHButton from "@/components/StandardUI/BHButton.vue";
 import BHInput from "@/components/StandardUI/BHInput.vue";
+import BHSelectBox from "@/components/StandardUI/BHSelectBox.vue";
+import CharacterClass from "@/classes/CharacterClass.ts";
 
 @Component({
   components: {
     CharacterBox,
     BHButton,
     BHInput,
+    BHSelectBox,
   },
 })
 export default class CharacterCreation extends Vue {
   private name: string = "";
+  private selectedClass: CharacterClass = null as unknown as CharacterClass;
+  private classes: CharacterClass[] = [
+    { id: 1, value: "fighter" },
+    { id: 2, value: "ranger" },
+    { id: 3, value: "rogue" },
+    { id: 4, value: "mage" },
+  ];
+
+  private updateClass(selectedClass: CharacterClass) {
+    this.selectedClass = selectedClass;
+    console.log(this.selectedClass);
+  }
 
   private Cancel(): void {
     this.$router.push("/characters");
   }
+
   private Create(): void {
     this.$router.push("/characters");
   }
