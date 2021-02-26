@@ -1,7 +1,5 @@
 <template>
-<div>
-      <img class="icon" :src="url"/>
-</div>
+    <img class="img" :src="url"/>
 </template>
 
 <script lang="ts">
@@ -14,11 +12,10 @@ export default class BHCharIcon extends Vue {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @import "@/Css/site.scss";
 
-.icon {
-    max-width: 100%;
-    max-height: 100%;
+.img {
+    height: 100%;
 }
 </style>

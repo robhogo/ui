@@ -23,6 +23,11 @@ const routes: Array<RouteConfig> = [
     path: '/characters',
     name: 'Characters',
     component: () => import('../views/Characters.vue')
+  },
+  {
+    path: '/characters/create',
+    name: 'CharacterCreation',
+    component: () => import('../views/CharacterCreation.vue')
   }
 ]
 

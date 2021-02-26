@@ -1,20 +1,15 @@
 <template>
   <div class="charcontainer">
     <div class="title container">
-      <h1>Characters</h1>
+      <h1>Create a character</h1>
     </div>
-    <div class="character-box">
-      <CharacterBox />
-      <CharacterBox />
-      <CharacterBox />
-      <CharacterBox />
-      <CharacterBox />
-      <CharacterBox />
-      <CharacterBox />
+    <div class="field container">
+      <BHInput inputType="text" placeholder="Name" :text.sync="name" />
+      <BHInput inputType="text" placeholder="Select a class" />
     </div>
     <div class="close container">
-      <BHButton text="Select character" @btn-clicked="SelectCharacter()" />
-      <h3 @click="GoToCreate()">Create a character</h3>
+      <BHButton text="Create" @btn-clicked="Create()" />
+      <h3 @click="Cancel()">Cancel</h3>
     </div>
   </div>
 </template>
@@ -24,19 +19,23 @@
 import { Component, Vue } from "vue-property-decorator";
 import CharacterBox from "@/components/CharacterComponents/CharacterBox.vue";
 import BHButton from "@/components/StandardUI/BHButton.vue";
+import BHInput from "@/components/StandardUI/BHInput.vue";
 
 @Component({
   components: {
     CharacterBox,
     BHButton,
+    BHInput,
   },
 })
-export default class Characters extends Vue {
-    private SelectCharacter(): void {
-    this.$router.push("/");
+export default class CharacterCreation extends Vue {
+  private name: string = "";
+
+  private Cancel(): void {
+    this.$router.push("/characters");
   }
-  private GoToCreate(): void {
-    this.$router.push("/characters/create");
+  private Create(): void {
+    this.$router.push("/characters");
   }
 }
 </script>
@@ -54,13 +53,13 @@ body {
 @import "@/Css/character-container.scss";
 
 .title {
-  height: 10vh;
-  min-height: 100px;
+  height: 15vh;
+  min-height: 150px;
 }
 
 .character-box {
-  height: 55vh;
-  min-height: 350px;
+  height: 50vh;
+  min-height: 320px;
   overflow: auto;
 }
 

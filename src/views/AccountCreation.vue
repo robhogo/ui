@@ -60,7 +60,9 @@ export default class Register extends Vue {
 .close {
   height: 30%;
 }
+</style>
 
+<style lang="scss">
 body {
   background: url("../assets/BitheroLoginBackground.jpg") no-repeat fixed;
   background-size: cover;

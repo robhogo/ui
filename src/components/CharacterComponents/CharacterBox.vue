@@ -1,15 +1,20 @@
 <template>
   <div class="box">
-    <div class="icon container">
+    <div class="icon container" id="icon">
       <BHCharIcon :url="require('../../assets/male1.png')" />
     </div>
     
     <div class="name container">
-      test
+      <h2>Nildryn</h2>
     </div>
 
     <div class="info container">
-      test
+      <div class="character-info">
+          Hunter
+      </div>
+      <div class="character-info">
+          Lvl 27
+      </div>
     </div>
   </div>
 </template>
@@ -29,7 +34,8 @@ export default class CharacterBox extends Vue {
 </script>
 
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
+
 @import "@/Css/site.scss";
 
 .box {
@@ -48,16 +54,22 @@ export default class CharacterBox extends Vue {
 
 .container {
   float: left;  
+  height: 100%;
 }
-
 .icon {
   width:25%;
-  height: 100%;
 }
 .info{
   width:25%;
 }
 .name{
   width: 50%;
+}
+
+.character-info{
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

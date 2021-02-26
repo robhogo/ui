@@ -47,6 +47,14 @@ export default class Login extends Vue {
 
 
 <style lang="scss">
+body {
+  background: url("../assets/BitheroLoginBackground.jpg") no-repeat fixed;
+  background-size: cover;
+  min-height: 100%;
+}
+</style>
+
+<style lang="scss" scoped>
 @import "../Css/site.scss";
 @import "../Css/register-container.scss";
 
@@ -58,11 +66,5 @@ export default class Login extends Vue {
 }
 .close {
   height: 40%;
-}
-
-body {
-  background: url("../assets/BitheroLoginBackground.jpg") no-repeat fixed;
-  background-size: cover;
-  min-height: 100%;
 }
 </style>
