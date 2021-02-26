@@ -4,8 +4,12 @@
       <h1>Login</h1>
     </div>
     <div class="fields container">
-      <BHInput inputType="text" placeholder="Username" :text.sync="username"/>
-      <BHInput inputType="password" placeholder="Password" :text.sync="password" />
+      <BHInput inputType="text" placeholder="Username" :text.sync="username" />
+      <BHInput
+        inputType="password"
+        placeholder="Password"
+        :text.sync="password"
+      />
     </div>
     <div class="close container">
       <BHButton text="Login" @btn-clicked="LoginEvent()" />
@@ -26,7 +30,6 @@ import BHInput from "@/components/StandardUI/BHInput.vue";
     BHInput,
   },
 })
-
 export default class Login extends Vue {
   private username: string = "";
   private password: string = "";
@@ -34,6 +37,7 @@ export default class Login extends Vue {
   private LoginEvent(): void {
     console.log(this.username);
     console.log(this.password);
+    this.$router.push("/characters");
   }
   private GoCreateAccount(): void {
     this.$router.push("/register");
@@ -46,13 +50,6 @@ export default class Login extends Vue {
 @import "../Css/site.scss";
 @import "../Css/register-container.scss";
 
-.container {
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  display: flex;
-  flex-direction: column;
-}
 .title {
   height: 30%;
 }
@@ -64,9 +61,8 @@ export default class Login extends Vue {
 }
 
 body {
-  background-image: url("../assets/BitheroLoginBackground.jpg");
+  background: url("../assets/BitheroLoginBackground.jpg") no-repeat fixed;
   background-size: cover;
-  background-repeat: no-repeat;
-  height: 100vh;
+  min-height: 100%;
 }
 </style>

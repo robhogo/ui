@@ -6,3 +6,10 @@ $clr_darkBlue: #2F3349;
 $clr_borderColor: #707070;
 $clr_boxShadowColor: rgba(0, 0, 0, 0.16);
 
+.container {
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+  }

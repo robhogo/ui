@@ -4,10 +4,10 @@
       <h1>Create</h1>
     </div>
     <div class="fields container">
-      <BHInput inputType="text" placeholder="Username" />
-      <BHInput inputType="text" placeholder="Email" />
-      <BHInput inputType="password" placeholder="Password" />
-      <BHInput inputType="password" placeholder="Repeat Password" />
+      <BHInput inputType="text" placeholder="Username" :text.sync="username"/>
+      <BHInput inputType="text" placeholder="Email" :text.sync="email"/>
+      <BHInput inputType="password" placeholder="Password" :text.sync="password"/>
+      <BHInput inputType="password" placeholder="Repeat Password" :text.sync="repeatPassword"/>
     </div>
     <div class="close container">
       <BHButton text="Create account" @btn-clicked="RegisterEvent()"/>
@@ -29,27 +29,28 @@ import BHInput from "@/components/StandardUI/BHInput.vue";
   })
 
 export default class Register extends Vue {
+  private username: string = "";
+  private email: string = "";
+  private password: string = "";
+  private repeatPassword: string = "";
+
   public RegisterEvent() : void{
-    this.$router.push("/register");
+    console.log(this.username);
+    console.log(this.email);
+    console.log(this.password);
+    console.log(this.repeatPassword);
   } 
   public GoToLogin() : void{
     this.$router.push("/");
   } 
+
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "../Css/site.scss";
 @import "../Css/register-container.scss";
 
-
-.container {
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  display: flex;
-  flex-direction: column;
-}
 .title {
   height: 20%;
 }
@@ -61,7 +62,8 @@ export default class Register extends Vue {
 }
 
 body {
-  background-image: url("../assets/BitheroLoginBackground.jpg");
+  background: url("../assets/BitheroLoginBackground.jpg") no-repeat fixed;
   background-size: cover;
+  min-height: 100%;
 }
 </style>

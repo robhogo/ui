@@ -18,6 +18,11 @@ const routes: Array<RouteConfig> = [
     path: '/register',
     name: 'Register',
     component: () => import('../views/AccountCreation.vue')
+  },
+  {
+    path: '/characters',
+    name: 'Characters',
+    component: () => import('../views/Characters.vue')
   }
 ]
 
