@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <div class="icon container" id="icon">
-      <BHCharIcon :url="require('../../assets/male1.png')" />
+      <BHCharIcon :url="url" />
     </div>
     
     <div class="name container">
@@ -30,6 +30,8 @@ import BHCharIcon from '@/components/StandardUI/BHCharIcon.vue';
   }
 })
 export default class CharacterBox extends Vue {
+  public url: string = 'male1.png';
+
 }
 </script>
 
