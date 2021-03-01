@@ -89,7 +89,7 @@ export default class Register extends Vue {
 
 <style scoped lang="scss">
 @import "../Css/site.scss";
-@import "../Css/register-container.scss";
+@import "../Css/containers.scss";
 
 .title {
   height: 20%;

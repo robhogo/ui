@@ -10,10 +10,10 @@
 
     <div class="info container">
       <div class="character-info">
-          {{ character.characterClass.value }}
+           {{ character.characterClass.value }}
       </div>
       <div class="character-info">
-          {{ character.lvl }}
+          Lvl {{ character.lvl }}
       </div>
     </div>
   </div>

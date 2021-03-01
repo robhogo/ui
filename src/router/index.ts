@@ -17,18 +17,23 @@ const routes: Array<RouteConfig> = [
   {
     path: '/register',
     name: 'Register',
-    component: () => import('../views/AccountCreation.vue')
+    component: () => import('@/views/AccountCreation.vue')
   },
   {
     path: '/characters',
     name: 'Characters',
-    component: () => import('../views/Characters.vue')
+    component: () => import('@/views/Characters.vue')
   },
   {
     path: '/characters/create',
     name: 'CharacterCreation',
-    component: () => import('../views/CharacterCreation.vue')
-  }
+    component: () => import('@/views/CharacterCreation.vue')
+  },
+  {
+    path: '/server',
+    name: 'Server',
+    component: () => import('@/views/ServerSelect.vue')
+  },
 ]
 
 const router = new VueRouter({

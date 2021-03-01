@@ -62,7 +62,7 @@ body {
 
 <style lang="scss" scoped>
 @import "../Css/site.scss";
-@import "../Css/register-container.scss";
+@import "../Css/containers.scss";
 
 .title {
   height: 30%;
