@@ -1,19 +1,19 @@
 <template>
   <div class="box">
     <div class="icon container">
-      <BHCharIcon :url="url" />
+      <BHCharIcon :url="character.avatar.url" />
     </div>
     
     <div class="name container">
-      <h2>Nildryn</h2>
+      <h2>{{ character.name }}</h2>
     </div>
 
     <div class="info container">
       <div class="character-info">
-          Hunter
+          {{ character.characterClass.value }}
       </div>
       <div class="character-info">
-          Lvl 27
+          {{ character.lvl }}
       </div>
     </div>
   </div>
@@ -21,8 +21,9 @@
 
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import BHCharIcon from '@/components/StandardUI/BHCharIcon.vue';
+import Character from "@/classes/Character";
 
 @Component ({
   components: {
@@ -30,7 +31,7 @@ import BHCharIcon from '@/components/StandardUI/BHCharIcon.vue';
   }
 })
 export default class CharacterBox extends Vue {
-  public url: string = 'male1.png';
+  @Prop() private character!: Character;
 
 }
 </script>

@@ -35,9 +35,15 @@ export default class Login extends Vue {
   private password: string = "";
 
   private LoginEvent(): void {
-    console.log(this.username);
-    console.log(this.password);
-    this.$router.push("/characters");
+    if (this.username.length == 0 || this.password.length == 0) {
+      this.$notify({
+        group: "error",
+        title: "invalid credentials",
+        text: "This username and password combination is incorrect.",
+      });
+    } else {
+      this.$router.push("/characters");
+    }
   }
   private GoCreateAccount(): void {
     this.$router.push("/register");

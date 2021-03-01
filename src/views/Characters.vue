@@ -4,13 +4,17 @@
       <h1>Characters</h1>
     </div>
     <div class="character-box">
-      <CharacterBox />
-      <CharacterBox />
-      <CharacterBox />
-      <CharacterBox />
-      <CharacterBox />
-      <CharacterBox />
-      <CharacterBox />
+      <div
+        v-for="character in characters"
+        :key="character.id"
+        @click="selectCharacter(character.id)"
+      >
+        <CharacterBox
+          :character="character"
+          :style="
+            selectedCharacter == character.id ? 'border-color: #FF4655' : ''          "
+        />
+      </div>
     </div>
     <div class="close container">
       <BHButton text="Select character" @btn-clicked="SelectCharacter()" />
@@ -24,6 +28,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import CharacterBox from "@/components/CharacterComponents/CharacterBox.vue";
 import BHButton from "@/components/StandardUI/BHButton.vue";
+import Character from "@/classes/Character.ts";
 
 @Component({
   components: {
@@ -32,11 +37,47 @@ import BHButton from "@/components/StandardUI/BHButton.vue";
   },
 })
 export default class Characters extends Vue {
-    private SelectCharacter(): void {
+  private selectedCharacter: number = (null as unknown) as number;
+  private characters: Character[] = [
+    {
+      id: 1,
+      name: "Nildryn",
+      characterClass: { id: 1, value: "fighter" },
+      avatar: { id: 1, url: "male1.png" },
+      lvl: 27,
+    },
+    {
+      id: 2,
+      name: "Kydrel",
+      characterClass: { id: 2, value: "Rogue" },
+      avatar: { id: 2, url: "female1.png" },
+      lvl: 22,
+    },
+    {
+      id: 3,
+      name: "Ursuso",
+      characterClass: { id: 3, value: "Hunter" },
+      avatar: { id: 3, url: "male2.png" },
+      lvl: 12,
+    },
+    {
+      id: 4,
+      name: "Janna",
+      characterClass: { id: 4, value: "mage" },
+      avatar: { id: 4, url: "female2.png" },
+      lvl: 19,
+    },
+  ];
+
+  private SelectCharacter(): void {
     this.$router.push("/");
   }
   private GoToCreate(): void {
     this.$router.push("/characters/create");
+  }
+  private selectCharacter(id: number): void {
+    this.selectedCharacter = id;
+    console.log(this.selectedCharacter);
   }
 }
 </script>

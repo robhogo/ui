@@ -86,7 +86,8 @@ export default class CharacterCreation extends Vue {
           this.$notify({
             group: "error",
             title: "Avatar",
-            text: "Pls select an avatar for your character by clicking on the desired icon.",
+            text:
+              "Pls select an avatar for your character by clicking on the desired icon.",
           });
         }
       } else {
