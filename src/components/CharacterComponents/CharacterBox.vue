@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <div class="icon container" id="icon">
+    <div class="icon container">
       <BHCharIcon :url="url" />
     </div>
     
