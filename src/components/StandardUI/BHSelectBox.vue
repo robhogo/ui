@@ -1,5 +1,6 @@
 <template>
   <select class="selectStyle" v-model="selectedOption" @change="onChange()">
+    <option :value="null" disabled selected hidden>Select a class</option>
     <option v-for="option in options" :key="option.id" :value="option">
       {{ option.value }}
     </option>
@@ -8,12 +9,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import SelectOption from '@/classes/SelectOption';
 
 @Component
 export default class BHButton extends Vue {
-  @Prop() private options!: [];
+  @Prop() private options!: SelectOption[];
 
-  private selectedOption: { id: number, value: string } = { id: 0, value:""};
+  private selectedOption: SelectOption = (null as unknown) as SelectOption;
 
   private onChange() : void {
     this.$emit('eventname', this.selectedOption);

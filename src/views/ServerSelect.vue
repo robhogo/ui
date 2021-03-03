@@ -1,11 +1,22 @@
 <template>
   <div class="servercontainer container">
-    <h1>Server select</h1>
-    <div class="upper container">
-      <BHButton text="Join server" @btn-clicked="joinServer()" />
+    <div v-if="!joining">
+      <h1>Server select</h1>
+      <div class="upper container">
+        <BHButton text="Join server" @btn-clicked="joinOverview()" />
+      </div>
+      <div class="lower container">
+        <BHButton text="Create server" @btn-clicked="createServer()" />
+      </div>
     </div>
-    <div class="lower container">
-      <BHButton text="Create server" @btn-clicked="createServer()" />
+    <div v-else>
+      <h1>Fill in server code</h1>
+      <div class="upper container">
+        <BHInput inputType="text" placeholder="Server code" :text.sync="serverCode" />
+      </div>
+      <div class="lower container">
+        <BHButton text="Join server" @btn-clicked="createServer()" />
+      </div>
     </div>
   </div>
 </template>
@@ -23,7 +34,12 @@ import BHInput from "@/components/StandardUI/BHInput.vue";
   },
 })
 export default class ServerSelect extends Vue {
-  private joinServer(): void {}
+  private joining: boolean = false;
+  private serverCode: String = "";
+
+  private joinOverview(): void {
+    this.joining = true;
+  }
   private createServer(): void {}
 }
 </script>
@@ -41,12 +57,12 @@ body {
 @import "../Css/site.scss";
 @import "../Css/containers.scss";
 
-.upper{
-    height: 10vh;
-    min-height: 100px;
+.upper {
+  height: 10vh;
+  min-height: 100px;
 }
-.lower{
-    height: 10vh;
-    min-height: 100px;
+.lower {
+  height: 10vh;
+  min-height: 100px;
 }
 </style>
