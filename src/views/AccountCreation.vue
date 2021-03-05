@@ -47,9 +47,10 @@ export default class Register extends Vue {
         if (this.password.length > 6 && this.password.length < 21) {
           if (this.password == this.repeatPassword) {
             this.$notify({
-              group: "succes",
+              group: "error",
               title: "Account created!",
               text: "Your account has been succesfully created!",
+              type: "succes"
             });
             this.$router.push("/");
           } else {

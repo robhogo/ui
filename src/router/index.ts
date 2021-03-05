@@ -31,8 +31,19 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/server',
-    name: 'Server',
-    component: () => import('@/views/ServerSelect.vue')
+    component: { render(c) { return c('router-view')}} ,
+    children: [
+      {
+        path: '/',
+        name: 'Server',
+        component: () => import('@/views/ServerSelect.vue')
+      },
+      {
+        path: ':serverCode',
+        name: 'Lobby',
+        component: () => import('@/views/Lobby.vue')
+      },
+    ]
   },
 ]
 

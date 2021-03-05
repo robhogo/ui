@@ -41,3 +41,18 @@
   
     background-color: $clr_darkWhite;
   }
+
+  .lobbycontainer {
+    width: 70vw;
+    max-width: 1700px;
+    min-width: 1000px;
+    height: 70vh;
+    min-height: 700px;
+  
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+  
+    background-color: $clr_darkWhite;
+  }

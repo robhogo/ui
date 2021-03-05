@@ -2,7 +2,6 @@
   <div id="app">
     <router-view />
     <notifications group="error" classes="error" />
-    <notifications group="succes" classes="succes" />
   </div>
 </template>
 

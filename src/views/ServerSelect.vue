@@ -15,7 +15,7 @@
         <BHInput inputType="text" placeholder="Server code" :text.sync="serverCode" />
       </div>
       <div class="lower container">
-        <BHButton text="Join server" @btn-clicked="createServer()" />
+        <BHButton text="Join server" @btn-clicked="joinServer()" />
       </div>
     </div>
   </div>
@@ -41,6 +41,10 @@ export default class ServerSelect extends Vue {
     this.joining = true;
   }
   private createServer(): void {}
+
+  private joinServer(): void {
+      this.$router.push("/server/" + this.serverCode);
+  }
 }
 </script>
 

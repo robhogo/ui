@@ -77,9 +77,10 @@ export default class CharacterCreation extends Vue {
       if (this.selectedClass != null) {
         if (this.selectedIcon != null) {
           this.$notify({
-            group: "succes",
+            group: "error",
             title: "Character created",
             text: "Your character has been succesfully created!",
+            type: "succes"
           });
           this.$router.push("/characters");
         } else {

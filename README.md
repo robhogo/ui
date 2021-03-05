@@ -1,32 +1,17 @@
 # robho-frontend
+Voor semester 6 van de opleiding ICT & Software van Fontys hogescholen heb ik de opdracht gekregen om een Enterprise applicatie te maken. De applicatie die ik ga maken is Return of Bithero Online (RoBHO). RoBHO is een browser game die je samen kan spelen met 1-4 mensen en is gebaseerd op de Bithero game die ik heb gemaakt in semester 2.
 
-## Project setup
-```
-npm install
-```
+## Wat is dit?
+front-end voor de applicatie. Dit omvat de hele game.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Ontwikkelaar
+| Naam | Email |
+| Jaap van der Meer | 405273@student.fontys.nl | 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Gerelateerde projecten
+- [RoBHo-frontend](https://dev.azure.com/I405273/BitheroOnline/_git/RoBHo-frontend) - front-end voor de applicatie.
 
-### Run your unit tests
-```
-npm run test:unit
-```
 
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
 
 # Build Docker Image
 docker build -t bithero-ui .
