@@ -37,8 +37,8 @@ import BHButton from "@/components/StandardUI/BHButton.vue";
 import BHCharIcon from "@/components/StandardUI/BHCharIcon.vue";
 import BHInput from "@/components/StandardUI/BHInput.vue";
 import BHSelectBox from "@/components/StandardUI/BHSelectBox.vue";
-import CharacterClass from "@/classes/CharacterClass.ts";
-import Image from "@/classes/Image.ts";
+import CharacterClass from "@/classes/CharacterClass";
+import Image from "@/classes/Image";
 
 @Component({
   components: {

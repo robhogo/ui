@@ -32,5 +32,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 docker build -t bithero-ui .
 
 # Run Docker Image
-docker run -it -p 8080:80 --rm --name bithero-ui bithero-ui-app
+docker run -it -p 8080:8080 --rm --name bithero-ui-app bithero-ui
 
