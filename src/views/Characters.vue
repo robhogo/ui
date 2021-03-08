@@ -29,7 +29,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import CharacterBox from "@/components/CharacterComponents/CharacterBox.vue";
 import BHButton from "@/components/StandardUI/BHButton.vue";
-import Character from "@/classes/Character.ts";
+import Character from "@/classes/Character";
 
 @Component({
   components: {
