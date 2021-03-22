@@ -34,7 +34,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "src/repositories/repositoryFactory.js", "src/repositories/authRepository.js", "src/repositories/repository.js"  ],
   "exclude": [
     "node_modules"
   ]

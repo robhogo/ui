@@ -4,12 +4,12 @@
       <h1>Create</h1>
     </div>
     <div class="fields container">
-      <BHInput inputType="text" placeholder="Username" :text.sync="username" />
-      <BHInput inputType="text" placeholder="Email" :text.sync="email" />
+      <BHInput inputType="text" placeholder="Username" :text.sync="request.Username" />
+      <BHInput inputType="text" placeholder="Email" :text.sync="request.Email" />
       <BHInput
         inputType="password"
         placeholder="Password"
-        :text.sync="password"
+        :text.sync="request.Password"
       />
       <BHInput
         inputType="password"
@@ -26,8 +26,13 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+// @ts-ignore
+import { RepositoryFactory } from "@/repositories/repositoryFactory";
 import BHButton from "@/components/StandardUI/BHButton.vue";
 import BHInput from "@/components/StandardUI/BHInput.vue";
+import RegisterRequest from "@/requests/RegisterRequest";
+
+const authRepository = RepositoryFactory.get("auth");
 
 @Component({
   components: {
@@ -36,16 +41,17 @@ import BHInput from "@/components/StandardUI/BHInput.vue";
   },
 })
 export default class Register extends Vue {
-  private username: string = "";
-  private email: string = "";
-  private password: string = "";
+  private request: RegisterRequest = new RegisterRequest();
   private repeatPassword: string = "";
 
   public RegisterEvent(): void {
-    if (this.username.length > 4 && this.username.length < 16) {
-      if (this.email.length > 8 && this.email.includes("@")) {
-        if (this.password.length > 6 && this.password.length < 21) {
-          if (this.password == this.repeatPassword) {
+    console.log(this.request);
+    console.log(this.repeatPassword);
+    if (this.request.Username.length > 4 && this.request.Username.length < 16) {
+      if (this.request.Email.length > 8 && this.request.Email.includes("@")) {
+        if (this.request.Password.length > 6 && this.request.Password.length < 21) {
+          if (this.request.Password == this.repeatPassword) {
+            authRepository.Register(this.request);
             this.$notify({
               group: "error",
               title: "Account created!",

@@ -12,10 +12,14 @@ front-end voor de applicatie. Dit omvat de hele game.
 - [RoBHo-frontend](https://dev.azure.com/I405273/BitheroOnline/_git/RoBHo-frontend) - front-end voor de applicatie.
 
 
-
 # Build Docker Image
 docker build -t bithero-ui .
 
 # Run Docker Image
 docker run -it -p 8080:8080 --rm --name bithero-ui-app bithero-ui
+
+
+# gebruikte sources
+- [Axios] https://www.npmjs.com/package/vue-axios
+- []
 

@@ -4,11 +4,11 @@
       <h1>Login</h1>
     </div>
     <div class="fields container">
-      <BHInput inputType="text" placeholder="Username" :text.sync="username" />
+      <BHInput inputType="text" placeholder="Username" :text.sync="request.Username" />
       <BHInput
         inputType="password"
         placeholder="Password"
-        :text.sync="password"
+        :text.sync="request.Password"
       />
     </div>
     <div class="close container">
@@ -23,6 +23,11 @@
 import { Component, Vue } from "vue-property-decorator";
 import BHButton from "@/components/StandardUI/BHButton.vue";
 import BHInput from "@/components/StandardUI/BHInput.vue";
+import AuthenticateRequest from "@/requests/AuthenticateRequest";
+// @ts-ignore
+import { RepositoryFactory } from "@/repositories/repositoryFactory";
+
+const authRepository = RepositoryFactory.get("auth");
 
 @Component({
   components: {
@@ -31,18 +36,18 @@ import BHInput from "@/components/StandardUI/BHInput.vue";
   },
 })
 export default class Login extends Vue {
-  private username: string = "";
-  private password: string = "";
+  private request: AuthenticateRequest = new AuthenticateRequest();
 
   private LoginEvent(): void {
-    if (this.username.length == 0 || this.password.length == 0) {
+    if (this.request.Username.length == 0 || this.request.Password.length == 0) {
       this.$notify({
         group: "error",
         title: "invalid credentials",
         text: "This username and password combination is incorrect.",
       });
     } else {
-      this.$router.push("/characters");
+      authRepository.Login(this.request);
+      //this.$router.push("/characters");
     }
   }
   private GoCreateAccount(): void {

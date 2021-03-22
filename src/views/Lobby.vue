@@ -147,26 +147,24 @@ body {
   }
   .players {
     height: 40vh;
-    min-height: 400px;
     width: 100%;
     display: inline-block;
     overflow: auto;
 
     .player-box {
       width: 50%;
-      display: inline-block;
+      display: flex;
+      flex-direction: row;
       height: 10vh;
       min-height: 100px;
       min-width: 350px;
       
       .char{
         width: 75%;
-        float: left;
         height: 100%;
       }
       .char-ready{
         width: 25%;
-        float: left;
         height: 100%;
       }
     }
