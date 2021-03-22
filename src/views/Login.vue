@@ -4,7 +4,11 @@
       <h1>Login</h1>
     </div>
     <div class="fields container">
-      <BHInput inputType="text" placeholder="Username" :text.sync="request.Username" />
+      <BHInput
+        inputType="text"
+        placeholder="Username"
+        :text.sync="request.Username"
+      />
       <BHInput
         inputType="password"
         placeholder="Password"
@@ -38,16 +42,16 @@ const authRepository = RepositoryFactory.get("auth");
 export default class Login extends Vue {
   private request: AuthenticateRequest = new AuthenticateRequest();
 
-  private LoginEvent(): void {
-    if (this.request.Username.length == 0 || this.request.Password.length == 0) {
+  private async LoginEvent(): Promise<void> {
+    var response = await authRepository.Login(this.request);
+    if (response != null) {
+      this.$store.commit('auth_success', response);
+    } else {
       this.$notify({
         group: "error",
         title: "invalid credentials",
         text: "This username and password combination is incorrect.",
       });
-    } else {
-      authRepository.Login(this.request);
-      //this.$router.push("/characters");
     }
   }
   private GoCreateAccount(): void {

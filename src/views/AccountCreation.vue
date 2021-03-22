@@ -4,8 +4,16 @@
       <h1>Create</h1>
     </div>
     <div class="fields container">
-      <BHInput inputType="text" placeholder="Username" :text.sync="request.Username" />
-      <BHInput inputType="text" placeholder="Email" :text.sync="request.Email" />
+      <BHInput
+        inputType="text"
+        placeholder="Username"
+        :text.sync="request.Username"
+      />
+      <BHInput
+        inputType="text"
+        placeholder="Email"
+        :text.sync="request.Email"
+      />
       <BHInput
         inputType="password"
         placeholder="Password"
@@ -45,49 +53,76 @@ export default class Register extends Vue {
   private repeatPassword: string = "";
 
   public RegisterEvent(): void {
-    console.log(this.request);
-    console.log(this.repeatPassword);
-    if (this.request.Username.length > 4 && this.request.Username.length < 16) {
-      if (this.request.Email.length > 8 && this.request.Email.includes("@")) {
-        if (this.request.Password.length > 6 && this.request.Password.length < 21) {
-          if (this.request.Password == this.repeatPassword) {
-            authRepository.Register(this.request);
-            this.$notify({
-              group: "error",
-              title: "Account created!",
-              text: "Your account has been succesfully created!",
-              type: "succes"
-            });
-            this.$router.push("/");
-          } else {
-            this.$notify({
-              group: "error",
-              title: "password",
-              text: "Passwords dont match",
-            });
-          }
-        } else {
-          this.$notify({
-            group: "error",
-            title: "password",
-            text: "Pls fill in a password between 7 and 20 characters",
-          });
-        }
+    if (!this.CheckUsername()) return;
+    if (!this.CheckEmail()) return;
+    if (!this.CheckPassword()) return;
+    if (this.Register()) {
+      this.$router.push("/");
+    }
+  }
+  public CheckPassword(): Boolean {
+    if (this.request.Password.length > 6 && this.request.Password.length < 21) {
+      if (this.request.Password == this.repeatPassword) {
+        return true;
       } else {
         this.$notify({
           group: "error",
-          title: "Email",
-          text: "Pls fill in a valid email",
+          title: "password",
+          text: "Passwords dont match",
         });
+        return false;
       }
     } else {
+      this.$notify({
+        group: "error",
+        title: "password",
+        text: "Pls fill in a password between 7 and 20 characters",
+      });
+      return false;
+    }
+  }
+  public CheckEmail(): Boolean {
+    if (this.request.Email.length < 9 || !this.request.Email.includes("@")) {
+      this.$notify({
+        group: "error",
+        title: "Email",
+        text: "Pls fill in a valid email",
+      });
+      return false;
+    }
+    return true;
+  }
+  public CheckUsername(): Boolean {
+    if (this.request.Username.length < 5 || this.request.Username.length > 15) {
       this.$notify({
         group: "error",
         title: "Username",
         text: "Pls fill in a username between 5 and 15 characters.",
       });
+      return false;
     }
+    return true;
   }
+  public Register(): Boolean {
+    var response = authRepository.Register(this.request);
+      if (response) {
+        this.$notify({
+          group: "error",
+          title: "Account created!",
+          text: "Your account has been succesfully created!",
+          type: "succes",
+        });
+        return true;
+      } else {
+        this.$notify({
+          group: "error",
+          title: "error",
+          text: "This username already exists",
+        });
+        return false;
+      }
+  }
+
   public GoToLogin(): void {
     this.$router.push("/");
   }
