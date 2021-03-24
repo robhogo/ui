@@ -28,10 +28,8 @@ import { Component, Vue } from "vue-property-decorator";
 import BHButton from "@/components/StandardUI/BHButton.vue";
 import BHInput from "@/components/StandardUI/BHInput.vue";
 import AuthenticateRequest from "@/requests/AuthenticateRequest";
-// @ts-ignore
-import { RepositoryFactory } from "@/repositories/repositoryFactory";
+import { authService } from "@/services/authService";
 
-const authRepository = RepositoryFactory.get("auth");
 
 @Component({
   components: {
@@ -43,7 +41,7 @@ export default class Login extends Vue {
   private request: AuthenticateRequest = new AuthenticateRequest();
 
   private async LoginEvent(): Promise<void> {
-    var response = await authRepository.Login(this.request);
+    var response = await authService.Login(this.request);
     if (response != null) {
       this.$store.commit('auth_success', response);
     } else {

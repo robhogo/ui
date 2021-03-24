@@ -34,13 +34,10 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-// @ts-ignore
-import { RepositoryFactory } from "@/repositories/repositoryFactory";
 import BHButton from "@/components/StandardUI/BHButton.vue";
 import BHInput from "@/components/StandardUI/BHInput.vue";
 import RegisterRequest from "@/requests/RegisterRequest";
-
-const authRepository = RepositoryFactory.get("auth");
+import { authService } from "@/services/authService";
 
 @Component({
   components: {
@@ -104,7 +101,7 @@ export default class Register extends Vue {
     return true;
   }
   public Register(): Boolean {
-    var response = authRepository.Register(this.request);
+    var response = authService.Register(this.request);
       if (response) {
         this.$notify({
           group: "error",
