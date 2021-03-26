@@ -30,7 +30,6 @@ import BHInput from "@/components/StandardUI/BHInput.vue";
 import AuthenticateRequest from "@/requests/AuthenticateRequest";
 import { authService } from "@/services/authService";
 
-
 @Component({
   components: {
     BHButton,
@@ -43,7 +42,8 @@ export default class Login extends Vue {
   private async LoginEvent(): Promise<void> {
     var response = await authService.Login(this.request);
     if (response != null) {
-      this.$store.commit('auth_success', response);
+      this.$store.commit("auth_success", response);
+      this.$router.push("/characters");
     } else {
       this.$notify({
         group: "error",
