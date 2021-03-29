@@ -1,5 +1,12 @@
 module.exports = {
-    devServer: {
-      proxy: 'http://localhost:5001/',
+  devServer: {
+    proxy: {
+      '/user': {
+        target: "http://localhost:5001",
+      },
+      '/character': {
+        target: "http://localhost:5010"
+      }
     }
   }
+}

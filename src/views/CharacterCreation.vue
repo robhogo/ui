@@ -5,7 +5,7 @@
     </div>
 
     <div class="input container">
-      <BHInput inputType="text" placeholder="Name" :text.sync="name" />
+      <BHInput inputType="text" placeholder="Name" :text.sync="request.name" />
       <BHSelectBox :options="classes" @eventname="updateClass" />
     </div>
 
@@ -15,8 +15,8 @@
         v-for="image in images"
         :key="image.id"
         class="icon"
-        @click="selectIcon(image.id)"
-        :style="selectedIcon == image.id ? 'border-color: #FF4655' : ''"
+        @click="selectIcon(image.url)"
+        :style="request.imageUrl == image.url ? 'border-color: #FF4655' : ''"
       >
         <BHCharIcon :url="image.url" />
       </div>
@@ -39,6 +39,8 @@ import BHInput from "@/components/StandardUI/BHInput.vue";
 import BHSelectBox from "@/components/StandardUI/BHSelectBox.vue";
 import CharacterClass from "@/classes/CharacterClass";
 import Image from "@/classes/Image";
+import CharacterCreateRequest from "@/requests/CharacterCreateRequest";
+import { characterService } from "@/services/characterService";
 
 @Component({
   components: {
@@ -50,9 +52,12 @@ import Image from "@/classes/Image";
   },
 })
 export default class CharacterCreation extends Vue {
-  private name: string = "";
-  private selectedIcon: number = (null as unknown) as number;
-  private selectedClass: CharacterClass = (null as unknown) as CharacterClass;
+  private request: CharacterCreateRequest = new CharacterCreateRequest(
+    0,
+    "",
+    "",
+    0
+  );
   private classes: CharacterClass[] = [
     { id: 1, value: "fighter" },
     { id: 2, value: "ranger" },
@@ -67,22 +72,28 @@ export default class CharacterCreation extends Vue {
   ];
 
   private updateClass(selectedClass: CharacterClass) {
-    this.selectedClass = selectedClass;
+    this.request.characterClass = selectedClass.id;
   }
   private cancel(): void {
     this.$router.push("/characters");
   }
-  public create(): void {
-    if (this.name.length > 3 && this.name.length < 16) {
-      if (this.selectedClass != null) {
-        if (this.selectedIcon != null) {
+  public async create(): Promise<void> {
+    if (this.request.name.length > 3 && this.request.name.length < 16) {
+      if (this.request.characterClass != 0) {
+        if (this.request.imageUrl.length > 0) {
           this.$notify({
             group: "error",
             title: "Character created",
             text: "Your character has been succesfully created!",
-            type: "succes"
+            type: "succes",
           });
-          this.$router.push("/characters");
+          this.request.userId = this.$store.state.user.id;
+          var result = await characterService.Create(this.request);
+          if (result) {
+            this.$router.push("/characters");
+          } else {
+            console.log("error");
+          }
         } else {
           this.$notify({
             group: "error",
@@ -106,8 +117,14 @@ export default class CharacterCreation extends Vue {
       });
     }
   }
-  private selectIcon(id: number): void {
-    this.selectedIcon = id;
+  private selectIcon(url: string): void {
+    this.request.imageUrl = url;
+  }
+
+  created() {
+    if (!this.$store.getters.isLoggedIn) {
+      this.$router.push("/");
+    }
   }
 }
 </script>
@@ -122,7 +139,7 @@ body {
 
 <style lang="scss" scoped>
 @import "@/Css/site.scss";
-@import "../Css/containers.scss";
+@import "@/Css/containers.scss";
 
 .title {
   height: 15vh;
