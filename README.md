@@ -5,11 +5,8 @@ Voor semester 6 van de opleiding ICT & Software van Fontys hogescholen heb ik de
 front-end voor de applicatie. Dit omvat de hele game.
 
 ## Ontwikkelaar
-| Naam | Email |
-| Jaap van der Meer | 405273@student.fontys.nl | 
-
-## Gerelateerde projecten
-- [RoBHo-frontend](https://dev.azure.com/I405273/BitheroOnline/_git/RoBHo-frontend) - front-end voor de applicatie.
+| Naam | 
+| Jaap van der Meer | 
 
 
 # Build Docker Image
