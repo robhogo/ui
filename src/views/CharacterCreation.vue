@@ -59,10 +59,10 @@ export default class CharacterCreation extends Vue {
     0
   );
   private classes: CharacterClass[] = [
-    { id: 1, value: "fighter" },
-    { id: 2, value: "ranger" },
-    { id: 3, value: "rogue" },
-    { id: 4, value: "mage" },
+    { id: 1, name: "fighter" },
+    { id: 2, name: "ranger" },
+    { id: 3, name: "rogue" },
+    { id: 4, name: "mage" },
   ];
   private images: Image[] = [
     { id: 1, url: "male1.png" },

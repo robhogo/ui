@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <div class="icon container">
-      <BHCharIcon :url="character.avatar.url" />
+      <BHCharIcon :url="character.imgUrl" />
     </div>
     
     <div class="name container">
@@ -10,10 +10,10 @@
 
     <div class="info container">
       <div class="character-info">
-           {{ character.characterClass.value }}
+           {{ character.characterClass.name }}
       </div>
       <div class="character-info">
-          Lvl {{ character.lvl }}
+          Lvl {{ character.combatLvl.lvl }}
       </div>
     </div>
   </div>

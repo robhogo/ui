@@ -58,36 +58,7 @@ import Character from "@/classes/Character";
 })
 export default class Lobby extends Vue {
   private serverCode: String = "";
-  private characters: Character[] = [
-    {
-      id: 1,
-      name: "Nildryn",
-      characterClass: { id: 1, value: "fighter" },
-      avatar: { id: 1, url: "male1.png" },
-      lvl: 27,
-    },
-    {
-      id: 2,
-      name: "Kydrel",
-      characterClass: { id: 2, value: "Rogue" },
-      avatar: { id: 2, url: "female1.png" },
-      lvl: 22,
-    },
-    {
-      id: 3,
-      name: "Ursuso",
-      characterClass: { id: 3, value: "Hunter" },
-      avatar: { id: 3, url: "male2.png" },
-      lvl: 12,
-    },
-    {
-      id: 4,
-      name: "Janna",
-      characterClass: { id: 4, value: "mage" },
-      avatar: { id: 4, url: "female2.png" },
-      lvl: 19,
-    },
-  ];
+  private characters: Character[] = [ ];
 
   created() {
     this.serverCode = this.$route.params.serverCode;
