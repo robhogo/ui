@@ -1,7 +1,7 @@
 [![Build](https://github.com/kwetterr/ui/actions/workflows/build.yml/badge.svg)](https://github.com/robhogo/ui/actions/workflows/build.yml)
 [![Publish Docker image](https://github.com/kwetterr/ui/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/robhogo/ui/actions/workflows/docker-publish.yml)
 
-# ui
+# 🕸️ ui
 web front end for robhogo application. Made with:
 - VueJs + Typescript
 
