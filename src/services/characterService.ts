@@ -4,7 +4,7 @@ import Character from '@/classes/Character';
 
 
 export default class CharacterService {
-  private baseUrl: string = "http://localhost:5002";
+  private baseUrl: string = process.env.VUE_APP_GAME;
 
  public async Create(request : CharacterCreateRequest): Promise<Boolean> {
     const response =  await http.post(`${this.baseUrl}/character/create`, request);
