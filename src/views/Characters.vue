@@ -61,15 +61,20 @@ export default class Characters extends Vue {
     this.selectedCharacter = id;
   }
 
-  async created() {
+  async mounted() {
     if (!this.$store.getters.isLoggedIn) {
       this.$router.push("/");
     } else {
-      this.characters = await characterService.GetAllByUserId(
+      characterService.GetAllByUserId(
         this.$store.state.user.id
-      );
+      )
+      .then((res) => {
+        this.characters =res;
+      })
+      .catch((err) => {
+        
+      });
       this.IsLoading = false;
-      console.log(this.characters);
     }
   }
 }

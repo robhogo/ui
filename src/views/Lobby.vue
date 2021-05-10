@@ -5,7 +5,7 @@
     </div>
     <div class="mid">
       <div class="top-mid">
-        <h2>Players: 4/5</h2>
+        <h2>Players: {{this.characters.length }}/5</h2>
       </div>
       <div class="players">
         <div
@@ -58,7 +58,7 @@ import Character from "@/classes/Character";
 })
 export default class Lobby extends Vue {
   private serverCode: String = "";
-  private characters: Character[] = [ ];
+  private characters: Array<Character> = new Array<Character>();
 
   created() {
     this.serverCode = this.$route.params.serverCode;

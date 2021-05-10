@@ -6,7 +6,7 @@
 
     <div class="input container">
       <BHInput inputType="text" placeholder="Name" :text.sync="request.name" />
-      <BHSelectBox :options="classes" @eventname="updateClass" />
+      <BHSelectBox :options="classOptions" @eventname="updateClass" />
     </div>
 
     <div class="icons container">
@@ -41,6 +41,7 @@ import CharacterClass from "@/classes/CharacterClass";
 import Image from "@/classes/Image";
 import CharacterCreateRequest from "@/requests/CharacterCreateRequest";
 import { characterService } from "@/services/characterService";
+import SelectOption from "@/classes/SelectOption";
 
 @Component({
   components: {
@@ -58,12 +59,13 @@ export default class CharacterCreation extends Vue {
     "",
     0
   );
-  private classes: CharacterClass[] = [
+  private classes: Array<CharacterClass> = [
     { id: 1, name: "fighter" },
     { id: 2, name: "ranger" },
     { id: 3, name: "rogue" },
     { id: 4, name: "mage" },
   ];
+  private classOptions: Array<SelectOption> = new Array<SelectOption>();
   private images: Image[] = [
     { id: 1, url: "male1.png" },
     { id: 2, url: "male2.png" },
@@ -71,8 +73,8 @@ export default class CharacterCreation extends Vue {
     { id: 4, url: "female2.png" },
   ];
 
-  private updateClass(selectedClass: CharacterClass) {
-    this.request.characterClass = selectedClass.id;
+  private updateClass(option: SelectOption) {
+    this.request.characterClass = option.id;
   }
   private cancel(): void {
     this.$router.push("/characters");
@@ -125,6 +127,7 @@ export default class CharacterCreation extends Vue {
     if (!this.$store.getters.isLoggedIn) {
       this.$router.push("/");
     }
+    this.classes.forEach((characterClass) => this.classOptions.push(new SelectOption(characterClass.id, characterClass.name)));
   }
 }
 </script>

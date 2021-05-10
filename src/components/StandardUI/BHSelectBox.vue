@@ -20,6 +20,9 @@ export default class BHButton extends Vue {
   private onChange() : void {
     this.$emit('eventname', this.selectedOption);
   }
+  created(){
+    console.log(this.options);
+  }
 }
 </script>
 

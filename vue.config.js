@@ -5,7 +5,7 @@ module.exports = {
         target: "http://localhost:5001",
       },
       '/character': {
-        target: "http://localhost:5010"
+        target: "http://localhost:5002"
       }
     }
   }
