@@ -1,18 +1,27 @@
 import CharacterClass from "./CharacterClass";
-import Image from "./Image";
+import CharacterLvl from "@/classes/CharacterLvl";
 
 export default class Character {
     public id: number;
     public characterClass: CharacterClass;
-    public avatar: Image;
+    public imgUrl: string;
     public name: String;
-    public lvl: number;
+    public money: number;
+    public userId: number;
+    public combatLvl: CharacterLvl;
+    public craftingLvl: CharacterLvl;
+    public gatheringLvl: CharacterLvl;
 
-    constructor(id: number, characterClass: CharacterClass, avatar: Image, name: string, lvl: number){
+    constructor(id: number, characterClass: CharacterClass, imgUrl: string, name: string, userId: number, 
+        combatlvl: CharacterLvl, craftinglvl: CharacterLvl, gatheringlvl: CharacterLvl, money: number){
         this.id = id;
         this.characterClass = characterClass;
-        this.avatar = avatar;
+        this.imgUrl = imgUrl;
         this.name = name;
-        this.lvl = lvl;
+        this.combatLvl = combatlvl;
+        this.craftingLvl = craftinglvl;
+        this.gatheringLvl = gatheringlvl;
+        this.money = money;
+        this.userId = userId;
     }
 }

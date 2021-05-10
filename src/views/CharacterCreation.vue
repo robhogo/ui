@@ -5,8 +5,8 @@
     </div>
 
     <div class="input container">
-      <BHInput inputType="text" placeholder="Name" :text.sync="name" />
-      <BHSelectBox :options="classes" @eventname="updateClass" />
+      <BHInput inputType="text" placeholder="Name" :text.sync="request.name" />
+      <BHSelectBox :options="classOptions" @eventname="updateClass" />
     </div>
 
     <div class="icons container">
@@ -15,8 +15,8 @@
         v-for="image in images"
         :key="image.id"
         class="icon"
-        @click="selectIcon(image.id)"
-        :style="selectedIcon == image.id ? 'border-color: #FF4655' : ''"
+        @click="selectIcon(image.url)"
+        :style="request.imageUrl == image.url ? 'border-color: #FF4655' : ''"
       >
         <BHCharIcon :url="image.url" />
       </div>
@@ -39,6 +39,9 @@ import BHInput from "@/components/StandardUI/BHInput.vue";
 import BHSelectBox from "@/components/StandardUI/BHSelectBox.vue";
 import CharacterClass from "@/classes/CharacterClass";
 import Image from "@/classes/Image";
+import CharacterCreateRequest from "@/requests/CharacterCreateRequest";
+import { characterService } from "@/services/characterService";
+import SelectOption from "@/classes/SelectOption";
 
 @Component({
   components: {
@@ -50,15 +53,19 @@ import Image from "@/classes/Image";
   },
 })
 export default class CharacterCreation extends Vue {
-  private name: string = "";
-  private selectedIcon: number = (null as unknown) as number;
-  private selectedClass: CharacterClass = (null as unknown) as CharacterClass;
-  private classes: CharacterClass[] = [
-    { id: 1, value: "fighter" },
-    { id: 2, value: "ranger" },
-    { id: 3, value: "rogue" },
-    { id: 4, value: "mage" },
+  private request: CharacterCreateRequest = new CharacterCreateRequest(
+    0,
+    "",
+    "",
+    0
+  );
+  private classes: Array<CharacterClass> = [
+    { id: 1, name: "fighter" },
+    { id: 2, name: "ranger" },
+    { id: 3, name: "rogue" },
+    { id: 4, name: "mage" },
   ];
+  private classOptions: Array<SelectOption> = new Array<SelectOption>();
   private images: Image[] = [
     { id: 1, url: "male1.png" },
     { id: 2, url: "male2.png" },
@@ -66,23 +73,29 @@ export default class CharacterCreation extends Vue {
     { id: 4, url: "female2.png" },
   ];
 
-  private updateClass(selectedClass: CharacterClass) {
-    this.selectedClass = selectedClass;
+  private updateClass(option: SelectOption) {
+    this.request.characterClass = option.id;
   }
   private cancel(): void {
     this.$router.push("/characters");
   }
-  public create(): void {
-    if (this.name.length > 3 && this.name.length < 16) {
-      if (this.selectedClass != null) {
-        if (this.selectedIcon != null) {
+  public async create(): Promise<void> {
+    if (this.request.name.length > 3 && this.request.name.length < 16) {
+      if (this.request.characterClass != 0) {
+        if (this.request.imageUrl.length > 0) {
           this.$notify({
             group: "error",
             title: "Character created",
             text: "Your character has been succesfully created!",
-            type: "succes"
+            type: "succes",
           });
-          this.$router.push("/characters");
+          this.request.userId = this.$store.state.user.id;
+          var result = await characterService.Create(this.request);
+          if (result) {
+            this.$router.push("/characters");
+          } else {
+            console.log("error");
+          }
         } else {
           this.$notify({
             group: "error",
@@ -106,8 +119,15 @@ export default class CharacterCreation extends Vue {
       });
     }
   }
-  private selectIcon(id: number): void {
-    this.selectedIcon = id;
+  private selectIcon(url: string): void {
+    this.request.imageUrl = url;
+  }
+
+  created() {
+    if (!this.$store.getters.isLoggedIn) {
+      this.$router.push("/");
+    }
+    this.classes.forEach((characterClass) => this.classOptions.push(new SelectOption(characterClass.id, characterClass.name)));
   }
 }
 </script>
@@ -122,7 +142,7 @@ body {
 
 <style lang="scss" scoped>
 @import "@/Css/site.scss";
-@import "../Css/containers.scss";
+@import "@/Css/containers.scss";
 
 .title {
   height: 15vh;

@@ -1,9 +1,9 @@
 export default class CharacterClass {
     public id: number;
-    public value: string;
+    public name: string;
 
-    constructor(id: number, value: string){
+    constructor(id: number, name: string){
         this.id = id;
-        this.value = value;
+        this.name = name;
     }
 }

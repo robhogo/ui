@@ -6,16 +6,16 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     status: '',
-    token: localStorage.getItem('token') || '',
+    user: '',
   },
   mutations: {
-    auth_success(state, token) {
+    auth_success(state, user) {
       state.status = 'success'
-      state.token = token
+      state.user = user
     },
     logout(state){
       state.status = ''
-      state.token = ''
+      state.user = ''
     },
   },
   actions: {
@@ -23,7 +23,7 @@ export default new Vuex.Store({
   modules: {
   },
   getters : {
-    isLoggedIn: state => !!state.token,
+    isLoggedIn: state => !!state.user,
     authStatus: state => state.status,
   }
 })
