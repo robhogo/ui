@@ -25,7 +25,7 @@ docker build -t bithero-ui .
 
 run image
 ```zsh
-docker run -it -p 8080:8080 --rm --name bithero-ui-app bithero-ui
+docker run -p 80:80 --name bithero-ui-app bithero-ui
 ```
 
 
