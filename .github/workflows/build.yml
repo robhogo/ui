@@ -6,9 +6,9 @@ name: Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [ iets ]
   pull_request:
-    branches: [ master ]
+    branches: [ iets ]
 
 jobs:
   build_and_test:
