@@ -19,4 +19,4 @@ jobs:
           tag_with_ref: true
         env: 
          VUE_APP_API_USER: ${{ secrets.USER_URL }} 
-         VUE_APP_API_GAME: ${{ secrets.GAME_URL }}"
+         VUE_APP_API_GAME: ${{ secrets.GAME_URL }}
