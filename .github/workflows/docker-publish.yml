@@ -17,4 +17,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: robho/ui
           tag_with_ref: true
+          build_args: "VUE_APP_API_USER=${{ secrets.USER_URL }}, VUE_APP_API_GAME=${{ secrets.GAME_URL }}"
 
