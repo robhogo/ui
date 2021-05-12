@@ -6,7 +6,8 @@ export default class AuthService {
   private baseUrl: string = process.env.VUE_APP_USER;
 
  public async Login(request : AuthenticateRequest): Promise<String> {
-   console.log(process.env.VUE_APP_USER);
+   console.log("USER: " + process.env.VUE_APP_USER);
+   console.log("GAME: " + process.env.VUE_APP_GAME);
     const response =  await http.post(`${this.baseUrl}/user/authenticate`, request);
     return response.data;
   }
